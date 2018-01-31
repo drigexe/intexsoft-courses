@@ -7,14 +7,15 @@ import java.util.Properties;
 
 public class PropertiesUtil {
 
-    public String getRootLibraryPath() {
+    public String getPropertyValue(String propertyName) {
         Properties myProp = new Properties();
         InputStream input = null;
+        String result = null;
 
         try {
-            input = new FileInputStream(".\\src\\com\\intexsoft\\courses\\vysocki\\library\\config.properties");
+            input = new FileInputStream(ConstantsUtil.CONFIG_PROPERTIES_FILE_PATH);
             myProp.load(input);
-            String unusedString = myProp.getProperty("ROOT_LIBRARY_PATH");
+            result = myProp.getProperty(propertyName);
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -28,31 +29,8 @@ public class PropertiesUtil {
             }
         }
 
-        return myProp.getProperty("ROOT_LIBRARY_PATH");
+        return result;
     }
 
-    public String getLibraryDepartmentsPath() {
-        Properties myProp = new Properties();
-        InputStream input = null;
-
-        try {
-            input = new FileInputStream(".\\src\\com\\intexsoft\\courses\\vysocki\\library\\config.properties");
-            myProp.load(input);
-            String unusedString = myProp.getProperty("LIBRARY_DEPARTMENTS_PATH");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return myProp.getProperty("LIBRARY_DEPARTMENTS_PATH");
-    }
 
 }

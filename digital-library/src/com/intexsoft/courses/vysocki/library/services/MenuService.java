@@ -4,16 +4,17 @@ import java.util.Scanner;
 
 public class MenuService {
 
-    public void run(){
+    public void run() {
         printWelcomeText();
         int chosenOption = getUserInput();
         //creating root directory for library files
         LibraryDepartmentService myLibService = new LibraryDepartmentService();
         myLibService.makeRootLibraryDir();
+        myLibService.getLibraryDepartments().forEach(element -> System.out.println(element.getName()));
 
     }
 
-    private void printWelcomeText(){
+    private void printWelcomeText() {
         System.out.println("Hi, please enter the number");
         /* TODO
          * ридрайтер читает из джейсонки инфу,
@@ -22,18 +23,16 @@ public class MenuService {
          *  потом этот массив выводится на экран, как опции*/
     }
 
-    private int getUserInput(){
+    private int getUserInput() {
         Scanner scanner = new Scanner(System.in);
         int userOptionNumber = scanner.nextInt();
         scanner.close();
         return userOptionNumber;
     }
 
-    public int chooseLibraryDepartment(int chosenOption){
-        //берет массив департментов из департментСервиса и сравнивает с юзерИнпутом
+    public int chooseLibraryDepartment(int chosenOption) {
 
-       // libraryDepartmentList[chosenOption].getPath()
-        int a =1;
+        int a = 1;
         return a;
     }
 }
