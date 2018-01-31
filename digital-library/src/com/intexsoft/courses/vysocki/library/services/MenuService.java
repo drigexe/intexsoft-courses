@@ -7,6 +7,9 @@ public class MenuService {
     public void run(){
         printWelcomeText();
         int chosenOption = getUserInput();
+        LibraryDepartmentService myLibService = new LibraryDepartmentService();
+        myLibService.makeLibraryDir();
+
     }
 
     private void printWelcomeText(){
@@ -26,7 +29,10 @@ public class MenuService {
     }
 
     public int chooseLibraryDepartment(int chosenOption){
+        //берет массив департментов из департментСервиса и равнивает с юзерИнпутом
 
        // libraryDepartmentList[chosenOption].getPath()
+        int a =1;
+        return a;
     }
 }
