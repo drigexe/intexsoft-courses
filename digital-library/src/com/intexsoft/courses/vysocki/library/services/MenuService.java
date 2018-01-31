@@ -7,13 +7,14 @@ public class MenuService {
     public void run(){
         printWelcomeText();
         int chosenOption = getUserInput();
+        //creating root directory for library files
         LibraryDepartmentService myLibService = new LibraryDepartmentService();
         myLibService.makeLibraryDir();
 
     }
 
     private void printWelcomeText(){
-        System.out.println("Privet");
+        System.out.println("Hi, please enter the number");
         /* TODO
          * ридрайтер читает из джейсонки инфу,
          * затем джейсонпарсер её преобразует в массив и
@@ -29,7 +30,7 @@ public class MenuService {
     }
 
     public int chooseLibraryDepartment(int chosenOption){
-        //берет массив департментов из департментСервиса и равнивает с юзерИнпутом
+        //берет массив департментов из департментСервиса и сравнивает с юзерИнпутом
 
        // libraryDepartmentList[chosenOption].getPath()
         int a =1;
