@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class LibraryDepartmentService {
 
-    public void makeLibraryDir() {
+    public void makeRootLibraryDir() {
         PropertiesUtil myProp = new PropertiesUtil();
         myProp.getRootLibraryPath();
         Path rootPath = Paths.get(myProp.getRootLibraryPath());

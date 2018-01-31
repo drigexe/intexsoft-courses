@@ -9,7 +9,7 @@ public class MenuService {
         int chosenOption = getUserInput();
         //creating root directory for library files
         LibraryDepartmentService myLibService = new LibraryDepartmentService();
-        myLibService.makeLibraryDir();
+        myLibService.makeRootLibraryDir();
 
     }
 
