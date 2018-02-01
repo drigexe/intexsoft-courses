@@ -1,26 +1,30 @@
 package com.intexsoft.courses.vysocki.library.services;
 
+import com.intexsoft.courses.vysocki.library.model.LibraryDepartment;
+import com.intexsoft.courses.vysocki.library.utils.ConstantsUtil;
+import com.intexsoft.courses.vysocki.library.utils.PropertiesUtil;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuService {
 
     public void run() {
         printWelcomeText();
+        LibraryDepartmentService libraryDepartmentService = new LibraryDepartmentService();
+        ArrayList<LibraryDepartment> libraryDepartments = new ArrayList<LibraryDepartment>();
+        libraryDepartments = libraryDepartmentService.getLibraryDepartments();
+        for (int i = 0; i < libraryDepartments.size(); i++) {
+            System.out.println(i + 1 + " - " + libraryDepartments.get(i).getName() + ", " + libraryDepartments.get(i).getWebsite());
+        }
         int chosenOption = getUserInput();
-        //creating root directory for library files
-        LibraryDepartmentService myLibService = new LibraryDepartmentService();
-        myLibService.makeRootLibraryDir();
-        myLibService.getLibraryDepartments().forEach(element -> System.out.println(element.getName()));
+        PropertiesUtil propertiesUtil = new PropertiesUtil();
+        chooseLibraryDepartment(chosenOption, libraryDepartments,propertiesUtil);
 
     }
 
     private void printWelcomeText() {
-        System.out.println("Hi, please enter the number");
-        /* TODO
-         * ридрайтер читает из джейсонки инфу,
-         * затем джейсонпарсер её преобразует в массив и
-         * этот массив получает департментсервис и вот в этом самом методе я его пилю в массив.
-         *  потом этот массив выводится на экран, как опции*/
+        System.out.println("Hi, please, choose the Library Department, which you want to work with");
     }
 
     private int getUserInput() {
@@ -30,9 +34,11 @@ public class MenuService {
         return userOptionNumber;
     }
 
-    public int chooseLibraryDepartment(int chosenOption) {
-
-        int a = 1;
-        return a;
+    public static String chooseLibraryDepartment(int chosenOption, ArrayList<LibraryDepartment> libraryDepartments, PropertiesUtil propertiesUtil) {
+        String rootLibraryPath = propertiesUtil.getPropertyValue(ConstantsUtil.ROOT_LIBRARY_PATH);
+        String chosenDepartmentPath = libraryDepartments.get(chosenOption-1).getPath();
+        String chosenDepartmentpath = rootLibraryPath + "\\" + chosenDepartmentPath;
+        System.out.println(chosenDepartmentpath);
+        return chosenDepartmentpath;
     }
 }

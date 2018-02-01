@@ -8,14 +8,14 @@ import java.util.Properties;
 public class PropertiesUtil {
 
     public String getPropertyValue(String propertyName) {
-        Properties myProp = new Properties();
+        Properties properties = new Properties();
         InputStream input = null;
         String result = null;
 
         try {
             input = new FileInputStream(ConstantsUtil.CONFIG_PROPERTIES_FILE_PATH);
-            myProp.load(input);
-            result = myProp.getProperty(propertyName);
+            properties.load(input);
+            result = properties.getProperty(propertyName);
 
         } catch (IOException ex) {
             ex.printStackTrace();

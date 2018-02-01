@@ -30,19 +30,6 @@ public class LibraryDepartmentService {
         return libraryDepartments;
     }
 
-    public void makeRootLibraryDir() {
-        PropertiesUtil propertiesUtil = new PropertiesUtil();
-        Path rootPath = Paths.get(propertiesUtil.getPropertyValue(ConstantsUtil.ROOT_LIBRARY_PATH));
-        //if directory exists?
-        if (!Files.exists(rootPath)) {
-            try {
-                Files.createDirectories(rootPath);
-            } catch (IOException e) {
-                //fail to create directory
-                e.printStackTrace();
-            }
-        }
-    }
 }
 
 
