@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class JsonParserUtil {
 
     public ArrayList<LibraryDepartment> parseDepartmentsJson(String jsonStr) {
-        JSONArray jsonarray = new JSONArray(jsonStr);
+        JSONArray jsonArray = new JSONArray(jsonStr);
         ArrayList<LibraryDepartment> libraryDepartments = new ArrayList<LibraryDepartment>();
-        for (int i = 0; i < jsonarray.length(); i++) {
-            JSONObject jsonobject = jsonarray.getJSONObject(i);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonobject = jsonArray.getJSONObject(i);
             String id = jsonobject.getString("id");
             String name = jsonobject.getString("name");
             String website = jsonobject.getString("website");
@@ -24,17 +24,17 @@ public class JsonParserUtil {
     }
 
     public ArrayList<PrintedEdition> parseBooksJson(String jsonStr) {
-        JSONArray jsonarray = new JSONArray(jsonStr);
+        JSONArray jsonArray = new JSONArray(jsonStr);
         ArrayList<PrintedEdition> printedEditions = new ArrayList<PrintedEdition>();
-        for (int i = 0; i < jsonarray.length(); i++) {
-            JSONObject jsonobject = jsonarray.getJSONObject(i);
-            String name = jsonobject.getString("name");
-            String author = jsonobject.getString("author");
-            String year = jsonobject.getString("year");
-            String genre = jsonobject.getString("genre");
-            String publisher = jsonobject.getString("publisher");
-            String isbn = jsonobject.getString("ISBN");
-            String editionType = jsonobject.getString("editionType");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            String name = jsonObject.getString("name");
+            String author = jsonObject.getString("author");
+            String year = jsonObject.getString("year");
+            String genre = jsonObject.getString("genre");
+            String publisher = jsonObject.getString("publisher");
+            String isbn = jsonObject.getString("ISBN");
+            String editionType = jsonObject.getString("editionType");
             String equalsBook = "book";
             String equalsJournal = "journal";
             String equalsComics = "comics";
@@ -43,15 +43,21 @@ public class JsonParserUtil {
                 printedEditions.add(book);
             }
             if (editionType.equals(equalsJournal)) {
-                Journal journal = new Journal(name, author, year, genre, publisher, isbn, editionType);
+                String issue = jsonObject.getString("issue");
+                Journal journal = new Journal(name, author, year, genre, publisher, isbn, editionType, issue);
                 printedEditions.add(journal);
             }
             if (editionType.equals(equalsComics)) {
-                Comics comics = new Comics(name, author, year, genre, publisher, isbn, editionType);
+                String artist = jsonObject.getString("artist");
+                Comics comics = new Comics(name, author, year, genre, publisher, isbn, editionType, artist);
                 printedEditions.add(comics);
             }
         }
         return printedEditions;
     }
 
+    public String booksToJSON(ArrayList<PrintedEdition> objects) {
+        JSONArray jsonArray = new JSONArray(objects);
+        return jsonArray.toString();
+    }
 }

@@ -11,15 +11,6 @@ public abstract class PrintedEdition {
     private String isbn;
     private String editionType;
 
-    /*public PrintedEdition(String name, String author, String year, String genre, String publisher, String isbn) {
-        this.setName(name);
-        this.setAuthor(author);
-        this.setYear(year);
-        this.setGenre(genre);
-        this.setPublisher(publisher);
-        this.setIsbn(isbn);
-    }*/
-
     public String getName() {
         return name;
     }
