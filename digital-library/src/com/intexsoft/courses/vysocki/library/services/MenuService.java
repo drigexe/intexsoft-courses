@@ -1,6 +1,7 @@
 package com.intexsoft.courses.vysocki.library.services;
 
 import com.intexsoft.courses.vysocki.library.model.LibraryDepartment;
+import com.intexsoft.courses.vysocki.library.model.PrintedEdition;
 import com.intexsoft.courses.vysocki.library.utils.ConstantsUtil;
 import com.intexsoft.courses.vysocki.library.utils.PropertiesUtil;
 
@@ -19,7 +20,11 @@ public class MenuService {
         }
         int chosenOption = getUserInput();
         PropertiesUtil propertiesUtil = new PropertiesUtil();
-        chooseLibraryDepartment(chosenOption, libraryDepartments,propertiesUtil);
+        String chosenFinalDepartmentPath = chooseLibraryDepartment(chosenOption, libraryDepartments, propertiesUtil);
+        BookService bookService = new BookService();
+        ArrayList<PrintedEdition> printedEditions = new ArrayList<PrintedEdition>();
+        printedEditions = bookService.getPrintedEditions(chosenFinalDepartmentPath);
+        printBooksJson(printedEditions);
 
     }
 
@@ -36,9 +41,21 @@ public class MenuService {
 
     public static String chooseLibraryDepartment(int chosenOption, ArrayList<LibraryDepartment> libraryDepartments, PropertiesUtil propertiesUtil) {
         String rootLibraryPath = propertiesUtil.getPropertyValue(ConstantsUtil.ROOT_LIBRARY_PATH);
-        String chosenDepartmentPath = libraryDepartments.get(chosenOption-1).getPath();
-        String chosenDepartmentpath = rootLibraryPath + "\\" + chosenDepartmentPath;
-        System.out.println(chosenDepartmentpath);
-        return chosenDepartmentpath;
+        String booksJsonPath = propertiesUtil.getPropertyValue(ConstantsUtil.BOOKS_PATH);
+        String chosenDepartmentPath = libraryDepartments.get(chosenOption - 1).getPath();
+        String chosenFinalDepartmentPath = rootLibraryPath + "\\" + chosenDepartmentPath + "\\" + booksJsonPath;
+        return chosenFinalDepartmentPath;
+    }
+
+    public void printBooksJson(ArrayList<PrintedEdition> printedEditions) {
+        for (int i = 0; i < printedEditions.size(); i++) {
+            System.out.println(printedEditions.get(i).getName() +
+                    " - " + printedEditions.get(i).getAuthor() +
+                    " - year  " + printedEditions.get(i).getYear() +
+                    " - " + printedEditions.get(i).getEditionType() +
+                    " - " + printedEditions.get(i).getGenre() +
+                    " - " + printedEditions.get(i).getPublisher() +
+                    " - " + printedEditions.get(i).getIsbn());
+        }
     }
 }
