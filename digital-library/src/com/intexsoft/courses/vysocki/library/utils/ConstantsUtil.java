@@ -7,6 +7,6 @@ public class ConstantsUtil {
     public static final String BOOKS_FILTERED_BY_AUTHOR = "BOOKS_FILTERED_BY_AUTHOR";
     public static final String BOOKS_FILTERED_BY_GENRE = "BOOKS_FILTERED_BY_GENRE";
     public static final String BOOKS_FILTERED_BY_EDITION_TYPE = "BOOKS_FILTERED_BY_EDITION_TYPE";
-    public static final String CONFIG_PROPERTIES_FILE_PATH = ".\\src\\com\\intexsoft\\courses\\vysocki\\library\\config.properties";
+    public static final String CONFIG_PROPERTIES_FILE_PATH = ".\\config.properties";
 
 }
